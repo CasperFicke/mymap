@@ -1,0 +1,37 @@
+
+<!-- markers/map.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title|title }}{% endblock title %}
+
+{% block css_files %}
+  <!-- local CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'markers/styles/map.css' %}" />
+{% endblock css_files %}
+
+{% block script_files_head %}
+{% endblock script_files_head %}
+
+{% block content %}
+  <h1>geo items map</h1>
+  <h3>leaflet, items from spatial database</h3>
+  <!-- map div -->
+  <div id="mapid"></div>
+  <script src="{% static 'markers/scripts/map.js' %}" defer></script>
+
+{% endblock content %}
+
+{% block script_files_bottom %}
+  <!-- leaflet css and js  -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ 
+  <!-- leaflet draw plugin css and js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+
+  <!-- local script -->
+  <script src="{% static 'markers/scripts/map.js' %}" defer></script>
+ {% endblock script_files_bottom %}

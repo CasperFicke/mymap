@@ -1,0 +1,35 @@
+
+<!-- stations/templates/stations/all_stations.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title|title }}{% endblock title %}
+
+{% block css_files %}
+  <!-- leaflet and leaflet.draw css -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+  <!--local styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'stations/styles/drawtest.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'stations/styles/export.css' %}">
+{% endblock css_files %}
+
+{% block script_files_head %}
+{% endblock script_files_head %}
+
+{% block content %}
+  <h1>Drawtest kaart</h1>
+  <h3>leaflet en leaflet.draw</h3>
+  <div id="container">
+    <div id="map"></div>
+  </div>
+{% endblock content %}
+
+{% block script_files_bottom %}
+  <!-- leaflet and leaflet.draw js -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <!-- local scripts -->
+  <script src="{% static 'stations/scripts/export.js' %}" defer></script>
+  <script src="{% static 'stations/scripts/drawtest.js' %}" defer></script>
+{% endblock script_files_bottom %}

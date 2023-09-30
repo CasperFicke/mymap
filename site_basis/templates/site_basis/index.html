@@ -1,0 +1,72 @@
+<!-- site_basis/templates/site_basis/index.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title|title }}{% endblock title %}
+
+{% block css_files %}
+  
+{% endblock css_files%}
+
+{% block content %}
+  {% include 'includes/breadcrumb.html' %}
+  <div class="container">
+    <div class="row mt-4">
+      <div class="card">
+        <div class="card-header bg-info text-white">
+          My map
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <a class="text-decoration-none text-dark" href="{% url 'markers:map' %}">
+                <div class="card my-card shadow text-center p-3">
+                  <h4>Kaart <i class="fas fa-globe"></i></h4>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4 mb-4">
+              <a class="text-decoration-none text-dark" href="{% url 'markers:wfs' %}">
+                <div class="card my-card shadow text-center p-3">
+                  <h4>Wfs <i class="fas fa-clone"></i></h4>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4 mb-4">
+              <a class="text-decoration-none text-dark" href="{% url 'markers:afstand' %}">
+                <div class="card my-card shadow text-center p-3">
+                  <h4>afstand <i class="fas fa-clone"></i></h4>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <a class="text-decoration-none text-dark" href="{% url 'markers:map' %}">
+              <div class="card my-card shadow text-center p-3">
+                <h4> <i class="fas fa-globe"></i></h4>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 mb-4">
+            <a class="text-decoration-none text-dark" href="{% url 'markers:map' %}">
+              <div class="card my-card shadow text-center p-3">
+                <h4> <i class="fas fa-clone"></i></h4>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 mb-4">
+            <a class="text-decoration-none text-dark" href="{% url 'markers:map' %}">
+              <div class="card my-card shadow text-center p-3">
+                <h4> <i class="fas fa-clone"></i></h4>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+{% endblock content %}

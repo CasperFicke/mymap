@@ -1,0 +1,45 @@
+<!-- templates/includes/navbar.html -->
+
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- Logo -->
+  <a class="nav-brand" href="{% url 'site-basis:home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
+<!-- buttons -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <!-- Linkerkant van de Navbar -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="{% url 'site-basis:home' %}">Home </a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'markers:map' %}">Kaart</a></li>
+      <!-- Maps menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Mymap</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{% url 'markers:map' %}">Kaart</a></li>
+          <li><a class="dropdown-item" href="{% url 'markers:wfs' %}">wfs</a></li>
+          <li><a class="dropdown-item" href="{% url 'markers:afstand' %}">afstand</a></li>
+        </ul>
+      </li>
+      <!-- Maps menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Drawtest</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{% url 'stations:all-stations' %}">Stations</a></li>
+          <li><a class="dropdown-item" href="{% url 'stations:draw-test' %}">Test</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'stations:all-stations' %}">Stations</a></li>
+      <li class="nav-item"><a class="nav-link" href="http://localhost:8000/admin/">Admin</a></li>
+    </ul>
+
+    <!-- Rechterkant van de Navbar -->
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item"><a class="nav-link" href="{% url 'site-basis:about' %}">About</a></li>
+    </ul>
+  </div>
+</nav>
