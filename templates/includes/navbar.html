@@ -13,26 +13,16 @@
     <!-- Linkerkant van de Navbar -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"><a class="nav-link" href="{% url 'site-basis:home' %}">Home </a></li>
-      <li class="nav-item"><a class="nav-link" href="{% url 'markers:map' %}">Kaart</a></li>
       <!-- Maps menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Mymap</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mymap</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item" href="{% url 'markers:map' %}">Kaart</a></li>
+          <li><a class="dropdown-item" href="{% url 'markers:all-markers-map' %}">Kaart</a></li>
           <li><a class="dropdown-item" href="{% url 'markers:wfs' %}">wfs</a></li>
-          <li><a class="dropdown-item" href="{% url 'markers:afstand' %}">afstand</a></li>
         </ul>
       </li>
-      <!-- Maps menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Drawtest</a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item" href="{% url 'stations:all-stations' %}">Stations</a></li>
-          <li><a class="dropdown-item" href="{% url 'stations:draw-test' %}">Test</a></li>
-        </ul>
-      </li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'markers:all-afstanden' %}">Afstanden</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'stations:draw-test' %}">Draw</a></li>
       <li class="nav-item"><a class="nav-link" href="{% url 'stations:all-stations' %}">Stations</a></li>
       <li class="nav-item"><a class="nav-link" href="http://localhost:8000/admin/">Admin</a></li>
     </ul>

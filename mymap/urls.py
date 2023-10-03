@@ -3,8 +3,6 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from markers.views import MarkersMapView
-
 urlpatterns = [
   # admin
   path('admin/'    , admin.site.urls),

@@ -25,17 +25,40 @@ longitude = 4.954
 user_location = Point(longitude, latitude, srid=4326)
 
 # Markers Map view
-class MarkersMapView(TemplateView):
-  template_name = "markers/map.html"
+#class MarkersMapView(TemplateView):
+#  template_name = "markers/map.html"
 
-# Markers afstand
-class MarkersafstandView(generic.ListView):
-  model               = Marker
-  context_object_name = 'markers'
-  queryset            = Marker.objects.annotate(
+# all markers map view
+def all_markersMapView(request):
+  title = 'alle markers'
+  markers = Marker.objects.all()
+  context = {
+    'title'   :  title,
+    'markers' : markers
+  }
+  return render(request, 'markers/map.html', context)
+
+# show marker view
+def show_markerView(request, pk):
+  title = 'marker'
+  marker = Marker.objects.all(pk=pk)
+  context = {
+    'title'  :  title,
+    'marker' : marker
+  }
+  return render(request, 'markers/map.html', context)
+
+# all afstanden map view
+def all_afstandenView(request):
+  title = 'Afstanden'
+  markers = Marker.objects.annotate(
     distance = Distance('location', user_location)
   ).order_by('distance')[0:6] # maximaal de 6 dichtsbijzijnde
-  template_name       = 'markers/afstanden.html'
+  context ={
+    'title'   : title,
+    'markers' : markers
+  }
+  return render(request, 'markers/afstanden.html', context)
 
 # Markers WFS
 class MarkersWFSView(WFSView):

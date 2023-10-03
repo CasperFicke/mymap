@@ -4,12 +4,18 @@
 from django.urls import path
 
 # local
-from .views import MarkersMapView, MarkersWFSView, MarkersafstandView
+from .views import (
+  #MarkersMapView,
+  MarkersWFSView,
+  all_markersMapView,
+  show_markerView,
+  all_afstandenView)
 
 app_name = "markers"
 
 urlpatterns = [
-  path("map/"     , MarkersMapView.as_view()     , name="map"),
-  path("wfs/"     , MarkersWFSView.as_view()     , name="wfs"),
-  path("afstand/" , MarkersafstandView.as_view() , name="afstand"),
+  path("map/"               , all_markersMapView        , name="all-markers-map"),
+  path("markers/<int:pk>"   , show_markerView           , name="show-marker"),
+  path("wfs/"               , MarkersWFSView.as_view()  , name="wfs"),
+  path("afstanden/"         , all_afstandenView         , name="all-afstanden"),
 ]

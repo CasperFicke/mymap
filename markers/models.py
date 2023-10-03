@@ -2,14 +2,26 @@
 
 # django
 from django.contrib.gis.db import models
+from django.conf import settings
+from django.utils.html import mark_safe
 
 # marker model
 class Marker(models.Model):
   name     = models.CharField(max_length=255)
+  image    = models.ImageField(blank=True, null=True, upload_to='markers/')
   location = models.PointField()
-
+  
+  # functie om object in de admin web-pagina te kunnen presenteren
   def __str__(self):
-    return self.name
+    return f'{self.name}'
+  # functie om image in de admin web-pagina te kunnen presenteren
+  def image_tag(self):
+    if self.image != '':
+      return mark_safe('<img src="%s%s" width="100" height="100" />' % (f'{settings.MEDIA_URL}', self.image))
+  # override delete method to also delete the image
+  def delete(self):
+    self.image.delete()
+    super().delete()
 
 # area model
 class Area(models.Model):

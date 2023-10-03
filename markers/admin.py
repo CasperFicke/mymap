@@ -14,7 +14,7 @@ class LocationAdmin(admin.OSMGeoAdmin):
 # marker model
 @admin.register(Marker)
 class MarkerAdmin(admin.GISModelAdmin):
-  list_display = ("name", "location")
+  list_display = ('name', 'location', 'image_tag', )
   gis_widget_kwargs = {
     'attrs':{
       'default_lat': 52.5,
