@@ -46,6 +46,7 @@ class MultiareaAdmin(admin.GISModelAdmin):
       'default_zoom': 12,
     },
   }
+
 # multiline model
 @admin.register(Multiline)
 class AreaAdmin(admin.GISModelAdmin):

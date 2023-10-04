@@ -17,6 +17,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mymap</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{% url 'markers:all-markers' %}">Lijst</a></li>
           <li><a class="dropdown-item" href="{% url 'markers:all-markers-map' %}">Kaart</a></li>
           <li><a class="dropdown-item" href="{% url 'markers:wfs' %}">wfs</a></li>
         </ul>

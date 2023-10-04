@@ -7,6 +7,8 @@
 {% block title %}{{ title|title }}{% endblock title %}
 
 {% block css_files %}
+  <!-- local CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'markers/styles/map.css' %}" />
 {% endblock css_files %}
 
 {% block script_files_head %}
@@ -17,13 +19,13 @@
   <div class="row mt-4">
     <div class="col-md-4">
       <hr>
-      
+      {{ marker.image_tag }}
       <hr>
     </div>
     <div class="col-md-8">
       <!-- map div -->
       <div id="mapid"></div>
-      <script src="{% static 'markers/scripts/map.js' %}" defer></script>
+      <script src="{% static 'markers/scripts/show_marker.js' %}" defer></script>
     </div>
   </div>
 {% endblock content %}

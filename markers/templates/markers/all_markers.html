@@ -1,0 +1,42 @@
+
+<!-- markers/templates/markers/all_markers.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title|title }}{% endblock title %}
+
+{% block css_files %}
+{% endblock css_files %}
+
+{% block script_files_head %}
+{% endblock script_files_head %}
+
+{% block content %}
+  <h2>All markers</h2>
+  <table class="table table-striped table-sm table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Naam</th>
+        <th scope="col">Image</th>
+        <th scope="col">Locatie</th>
+        <th scope="col">Afstand</th>
+      </tr>
+    </thead>
+    <tbody>      
+      {% if markers %}
+        {% for marker in markers %}
+          <tr>
+            <th scope="row"><a href="{{ marker.get_absolute_url }}">{{ marker.name }}</a></th>
+            <td> {{ marker.image_tag }}</td>
+            <td> {{ marker.location }}</td>
+            <td> {{ marker.distance }}</td>
+          </tr>
+        {% endfor %}  
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock content %}
+
+{% block script_files_bottom %}
+{% endblock script_files_bottom %}

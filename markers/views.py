@@ -2,8 +2,7 @@
 
 # django
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
-from django.views import generic
+from django.http import Http404
 from django.core.serializers import serialize
 
 from django.contrib.gis.geos import Point, fromstr
@@ -28,6 +27,18 @@ user_location = Point(longitude, latitude, srid=4326)
 #class MarkersMapView(TemplateView):
 #  template_name = "markers/map.html"
 
+# all markers view
+def all_markersView(request):
+  title = 'All markers'
+  markers = Marker.objects.annotate(
+    distance = Distance('location', user_location)
+  ).order_by('distance')
+  context ={
+    'title'   : title,
+    'markers' : markers
+  }
+  return render(request, 'markers/all_markers.html', context)
+
 # all markers map view
 def all_markersMapView(request):
   title = 'alle markers'
@@ -39,14 +50,17 @@ def all_markersMapView(request):
   return render(request, 'markers/map.html', context)
 
 # show marker view
-def show_markerView(request, pk):
+def show_markerView(request, marker_id):
   title = 'marker'
-  marker = Marker.objects.all(pk=pk)
-  context = {
-    'title'  :  title,
-    'marker' : marker
-  }
-  return render(request, 'markers/map.html', context)
+  try:
+    marker = Marker.objects.get(id=marker_id)
+    context = {
+      'title'  : title,
+      'marker' : marker
+    }
+    return render(request, 'markers/show_marker.html', context)
+  except:
+    raise Http404()
 
 # all afstanden map view
 def all_afstandenView(request):

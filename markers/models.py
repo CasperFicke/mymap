@@ -2,6 +2,7 @@
 
 # django
 from django.contrib.gis.db import models
+from django.urls import reverse
 from django.conf import settings
 from django.utils.html import mark_safe
 
@@ -11,6 +12,9 @@ class Marker(models.Model):
   image    = models.ImageField(blank=True, null=True, upload_to='markers/')
   location = models.PointField()
   
+  # create absolute url
+  def get_absolute_url(self):
+    return reverse('markers:show-marker', args=[self.id])
   # functie om object in de admin web-pagina te kunnen presenteren
   def __str__(self):
     return f'{self.name}'

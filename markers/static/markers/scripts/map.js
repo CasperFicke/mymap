@@ -4,12 +4,13 @@ var copy  = "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreet
 var url   = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 var layer = L.tileLayer(url, { attribution: copy });
 var map   = L.map("mapid", { layers: [layer] });
+
+/* set map */
 map.locate()
   .on("locationfound", (e) => map.setView(e.latlng, 14))
   .on("locationerror", () => map.setView([52.5, 4.95], 12));
   
-  
-  /* load markers */
+/* load markers */
 async function load_markers() {
   const markers_url = `/api/markers/?in_bbox=${map
     .getBounds()
@@ -18,7 +19,7 @@ async function load_markers() {
   const geojson = await response.json();
   return geojson;
 }
-  /* render markers */
+/* render markers */
 async function render_markers() {
   const markers = await load_markers();
   L.geoJSON(markers)
