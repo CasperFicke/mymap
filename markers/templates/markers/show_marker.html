@@ -28,6 +28,8 @@
       <script src="{% static 'markers/scripts/show_marker.js' %}" defer></script>
     </div>
   </div>
+  <a href="{% url 'markers:all-markers-map' %}" class="btn btn-secondary">Terug <i class="fas fa-solid fa-arrow-left"></i></a>
+  <br><br>
 {% endblock content %}
 
 {% block script_files_bottom %}

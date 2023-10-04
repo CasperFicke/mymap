@@ -27,7 +27,7 @@ user_location = Point(longitude, latitude, srid=4326)
 #class MarkersMapView(TemplateView):
 #  template_name = "markers/map.html"
 
-# all markers view
+# all markers view (lijst)
 def all_markersView(request):
   title = 'All markers'
   markers = Marker.objects.annotate(
@@ -41,11 +41,13 @@ def all_markersView(request):
 
 # all markers map view
 def all_markersMapView(request):
-  title = 'alle markers'
+  title   = 'alle markers'
   markers = Marker.objects.all()
+  areas   = Area.objects.all()
   context = {
     'title'   :  title,
-    'markers' : markers
+    'markers' : markers,
+    'areas'   : areas
   }
   return render(request, 'markers/map.html', context)
 

@@ -1,4 +1,3 @@
-
 <!-- markers/map.html -->
 
 {% extends 'base.html' %}
@@ -23,11 +22,19 @@
       {% if markers %}
         <ul>
           {% for marker in markers %}
-            <li>{{ marker.name }}: {{ marker.distance }}</li>
+            <li><a href="{{ marker.get_absolute_url }}">{{ marker.name }}</a> : {{ marker.distance }}</li>
           {% endfor %}
         </ul>
       {% endif %}
       <hr>
+      {% if areas %}
+      <ul>
+        {% for area in areas %}
+          <li>{{ area.name }}: {{ area.beschrijving }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <hr>
     </div>
     <div class="col-md-8">
       <!-- map div -->

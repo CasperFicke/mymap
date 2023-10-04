@@ -31,7 +31,7 @@ class AreaAdmin(admin.GISModelAdmin):
     'attrs':{
       'default_lat': 52.5,
       'default_lon': 4.95,
-      'default_zoom': 12,
+      'default_zoom': 14,
     },
   }
 

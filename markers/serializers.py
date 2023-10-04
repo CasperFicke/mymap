@@ -9,27 +9,27 @@ from markers.models import Marker, Area, Multiarea, Multiline
 # Marker serializer
 class MarkerSerializer(serializers.GeoFeatureModelSerializer):
   class Meta:
-    fields = ("id", "name")
+    fields    = ("id", "name")
     geo_field = "location"
-    model = Marker
+    model     = Marker
 
 # Area serializer
 class AreaSerializer(serializers.GeoFeatureModelSerializer):
   class Meta:
-    fields = ("id", "name")
+    fields    = ("id", "name", "beschrijving")
     geo_field = "area"
-    model = Area
+    model     = Area
 
 # Multiarea serializer
 class MultiareaSerializer(serializers.GeoFeatureModelSerializer):
   class Meta:
-    fields = ("id", "name")
+    fields    = ("id", "name")
     geo_field = "areas"
-    model = Multiarea
+    model     = Multiarea
 
 # Multiline serializer
 class MultilineSerializer(serializers.GeoFeatureModelSerializer):
   class Meta:
-    fields = ("id", "name")
+    fields    = ("id", "name")
     geo_field = "line"
-    model = Multiline
+    model     = Multiline

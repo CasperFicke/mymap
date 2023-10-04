@@ -29,8 +29,9 @@ class Marker(models.Model):
 
 # area model
 class Area(models.Model):
-  name     = models.CharField(max_length=255)
-  area     = models.PolygonField()
+  name         = models.CharField(max_length=255)
+  beschrijving = models.TextField('Area beschrijving', blank=True, help_text='Beschrijving van de area')
+  area         = models.PolygonField()
 
   def __str__(self):
     return self.name

@@ -12,10 +12,8 @@ map.locate()
 
 /* load marker */
 async function load_marker() {
-  const markers_url = `/api/markers/?in_bbox=${map
-    .getBounds()
-    .toBBoxString()}`;
-  const response = await fetch(markers_url);
+  const marker_url = `/api/markers/1/`;
+  const response = await fetch(marker_url);
   const geojson = await response.json();
   return geojson;
 }
