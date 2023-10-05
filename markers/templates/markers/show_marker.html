@@ -15,17 +15,22 @@
 {% endblock script_files_head %}
 
 {% block content %}
-  <h2>{{marker.name}}</h2>
   <div class="row mt-4">
     <div class="col-md-4">
+      <h3>{{marker.name}}</h3>
       <hr>
       {{ marker.image_tag }}
       <hr>
+      <h5>location</h5>
+      <p>
+        latitude: <span id="lat"></span><br />
+        longitude: <span id="lon"></span>
+      </p>
+      {{ marker.location }}
     </div>
     <div class="col-md-8">
       <!-- map div -->
       <div id="mapid"></div>
-      <script src="{% static 'markers/scripts/show_marker.js' %}" defer></script>
     </div>
   </div>
   <a href="{% url 'markers:all-markers-map' %}" class="btn btn-secondary">Terug <i class="fas fa-solid fa-arrow-left"></i></a>
@@ -33,6 +38,8 @@
 {% endblock content %}
 
 {% block script_files_bottom %}
+  <!-- local JS  -->
+  <script src="{% static 'markers/scripts/show_marker.js' %}" defer></script>
   <!-- leaflet css and js  -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

@@ -2,6 +2,8 @@
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
   # admin
@@ -13,6 +15,10 @@ urlpatterns = [
   # api
   path("api/"      , include("markers.api")),
 ]
+
+if settings.DEBUG:
+  urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # url compositie voor externe toegang tot staticfiles
+  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)   # url compositie voor externe toegang tot mediafiles
 
 # Configure Admin area Titles
 admin.site.site_header = "Admin area"      # header op admin pagina (blauwe balk)

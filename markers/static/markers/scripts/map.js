@@ -12,7 +12,7 @@ map.locate()
   
 /* load markers */
 async function load_markers() {
-  const markers_url = `/api/markers/?in_bbox=${map
+  const markers_url = `/api/markers/v1/?in_bbox=${map
     .getBounds()
     .toBBoxString()}`;
   const response = await fetch(markers_url);
@@ -31,7 +31,7 @@ map.on("moveend", render_markers);
 
 /* load areas */
 async function load_areas() {
-  const areas_url = `/api/areas/?in_bbox=${map
+  const areas_url = `/api/areas/v1/?in_bbox=${map
     .getBounds()
     .toBBoxString()}`;
   const response_a = await fetch(areas_url);
@@ -50,7 +50,7 @@ map.on("moveend", render_areas);
 
 /* load multiareas */
 async function load_multiareas() {
-  const multiareas_url = `/api/multiareas/?in_bbox=${map
+  const multiareas_url = `/api/multiareas/v1/?in_bbox=${map
     .getBounds()
     .toBBoxString()}`;
   const response_ma = await fetch(multiareas_url);
@@ -69,7 +69,7 @@ map.on("moveend", render_multiareas);
 
 /* load multilines */
 async function load_multilines() {
-  const multilines_url = `/api/multilines/?in_bbox=${map
+  const multilines_url = `/api/multilines/v1/?in_bbox=${map
     .getBounds()
     .toBBoxString()}`;
   const response_m = await fetch(multilines_url);

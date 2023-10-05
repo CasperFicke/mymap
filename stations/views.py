@@ -1,12 +1,13 @@
+# stations/views.py
+
+# django
 from django.shortcuts import render
-
 from django.views.generic.base import TemplateView
-
 
 # local
 from .models import WeatherStation
 
-# Markers Map view
+# All stations map view
 def all_stations(request):
   title    = 'Weatherstations'
   stations = WeatherStation.objects.all()
