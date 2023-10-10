@@ -2,7 +2,10 @@
 
 # django
 from django.shortcuts import render
-from django.http import Http404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.http import Http404, HttpResponse, HttpResponseRedirect, request
 from django.core.serializers import serialize
 
 from django.contrib.gis.geos import Point, fromstr
@@ -13,8 +16,13 @@ from gisserver.features import FeatureType, ServiceDescription
 from gisserver.geometries import CRS, WGS84
 from gisserver.views import WFSView
 
+# 
+from datetime import date
+import csv
+
 # local
 from .models import Marker, Area, Multiarea, Multiline
+from .forms import MarkerForm
 
 RD_NEW = CRS.from_srid(28992)
 WGS_84 = CRS.from_srid(4326)
@@ -38,6 +46,21 @@ def all_markersView(request):
     'markers' : markers
   }
   return render(request, 'markers/all_markers.html', context)
+
+# export markers to CSV
+def csv_markerView(request):
+  response= HttpResponse(content_type='text/csv')
+  response['Content-Disposition'] = 'attachment; filename=MarkersList_' + str(date.today()) + '.csv'
+  # create CSV writer
+  writer=csv.writer(response)
+  # Select all markers to export
+  markers_list = Marker.objects.all()
+  # create first row with column headings
+  writer.writerow(['Naam', 'Geocodering', 'Locatie'])
+  # loop thru and output
+  for marker in markers_list:
+    writer.writerow([marker.name, marker.location])
+  return response
 
 # all markers map view
 def all_markersMapView(request):
@@ -63,6 +86,25 @@ def show_markerView(request, marker_id):
     return render(request, 'markers/show_marker.html', context)
   except:
     raise Http404()
+
+# add marker
+@login_required
+def add_markerView(request):
+  title = 'Add Marker'
+  if request.method == "POST":
+    form = MarkerForm(request.POST)
+    if form.is_valid():
+      marker = form.save(commit=False)
+      marker.save()
+      messages.success(request, ("Marker " + marker.name + " has been added!"))
+      return HttpResponseRedirect('/markers/markers/')
+  else:
+    form = MarkerForm
+  context = {
+    'title' : title,
+    'form'  : form,
+  }
+  return render(request, 'markers/add_marker.html', context)
 
 # all afstanden map view
 def all_afstandenView(request):

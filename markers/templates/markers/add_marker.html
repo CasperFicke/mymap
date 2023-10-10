@@ -1,0 +1,49 @@
+
+<!-- markers/templaters/markers/add_markers.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title|title }}{% endblock title %}
+
+{% block css_files %}
+  <!-- local CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'markers/styles/map.css' %}" />
+{% endblock css_files %}
+
+{% block script_files_head %}
+{% endblock script_files_head %}
+
+{% block content %}
+  {% include 'includes/breadcrumb.html' %}
+  <div class="row mt-4">
+    <div class="col-md-4">
+      {% if user.is_authenticated %}
+        <div class="container">
+          <form action="" method=POST>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" class="btn btn-secondary">
+          </form>
+        </div>
+      {% else %}
+        <h3> Opvragen van deze pagina is niet toegestaan. Hiervoor moet u ingelogd zijn!</h3>
+        <a href="{% url 'users:sign-in' %}?next={{request.path}}">Login here</a>
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <!-- map div -->
+      <div id="mapid"></div>
+    </div>
+  </div>
+  <a href="{% url 'markers:all-markers-map' %}" class="btn btn-secondary">Cancel <i class="fas fa-solid fa-arrow-left"></i></a>
+  <br><br>
+{% endblock content %}
+
+{% block script_files_bottom %}
+  <!-- local JS  -->
+  <script src="{% static 'markers/scripts/show_marker.js' %}" defer></script>
+  <!-- leaflet css and js  -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{% endblock script_files_bottom %}

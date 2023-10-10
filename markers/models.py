@@ -6,6 +6,15 @@ from django.urls import reverse
 from django.conf import settings
 from django.utils.html import mark_safe
 
+# abstracts from django extensions
+from django_extensions.db.models import (
+  TimeStampedModel,
+	ActivatorModel 
+)
+
+# installed packages
+import uuid
+
 # marker model
 class Marker(models.Model):
   name     = models.CharField(max_length=255)
@@ -27,12 +36,32 @@ class Marker(models.Model):
     self.image.delete()
     super().delete()
 
+# areaType model
+class AreaType(TimeStampedModel,ActivatorModel,models.Model):
+  class Meta:
+    ordering            = ['type']
+    verbose_name        = 'area-type'
+    verbose_name_plural = 'area types'
+  # attributes
+  type         = models.CharField('Area Type', max_length=100)
+  beschrijving = models.TextField('Beschrijving', blank=True)
+  
+  # functie om model in de admin web-pagina te kunnen presenteren
+  def __str__(self):
+    return self.type
+
 # area model
 class Area(models.Model):
+  class Meta:
+    ordering            = ['name']
+    verbose_name        = 'area'
+    verbose_name_plural = 'areas'
+  # attributes
   name         = models.CharField(max_length=255)
   beschrijving = models.TextField('Area beschrijving', blank=True, help_text='Beschrijving van de area')
   area         = models.PolygonField()
-
+  # relaties
+  type         = models.ForeignKey(AreaType, blank=True, null=True, on_delete=models.SET_NULL, related_name='areas')
   def __str__(self):
     return self.name
 

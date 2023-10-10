@@ -4,7 +4,7 @@
 from django.contrib.gis import admin
 
 # local
-from .models import Marker, Area, Multiarea, Multiline
+from .models import Marker, Area, AreaType, Multiarea, Multiline
 
 class LocationAdmin(admin.OSMGeoAdmin):
   default_lat  = 52.5
@@ -22,6 +22,14 @@ class MarkerAdmin(admin.GISModelAdmin):
       'default_zoom': 12,
     },
   }
+
+# Register Areatype
+class AreaTypeAdmin(admin.ModelAdmin):
+  list_display = ('type', 'beschrijving',)
+  ordering     = ('type',)
+
+# overall admin area
+admin.site.register(AreaType, AreaTypeAdmin)
 
 # area model
 @admin.register(Area)

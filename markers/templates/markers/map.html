@@ -30,7 +30,9 @@
       {% if areas %}
       <ul>
         {% for area in areas %}
-          <li>{{ area.name }}: {{ area.beschrijving }}</li>
+          <li>
+            {{ area.name }},  {{area.type}}<br>{{ area.beschrijving }}<br>
+          </li>
         {% endfor %}
       </ul>
     {% endif %}
