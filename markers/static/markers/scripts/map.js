@@ -41,7 +41,7 @@ async function load_areas() {
 /* render areas */
 async function render_areas() {
   const areas = await load_areas();
-  L.geoJSON(areas)
+L.geoJSON(areas, {color:'red', fillcolor:'blue', fillOpacity:'1'})
     .bindPopup((layer) => layer.feature.properties.name)
     .addTo(map);
 }

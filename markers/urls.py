@@ -11,6 +11,7 @@ from .views import (
   show_markerView,
   add_markerView,
   csv_markerView,
+  save_markerView,
   show_markerView,
   all_afstandenView)
 
@@ -22,6 +23,7 @@ urlpatterns = [
   path("markers/<int:marker_id>" , show_markerView           , name="show-marker"),
   path("markers/add"             , add_markerView            , name="add-marker"),
   path("markers/csv"             , csv_markerView            , name="csv-markers"),
+  path("markers/savemarker"      , save_markerView           , name="save-marker"),
   path("wfs/"                    , MarkersWFSView.as_view()  , name="wfs"),
   path("afstanden/"              , all_afstandenView         , name="all-afstanden"),
 ]

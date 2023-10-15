@@ -106,6 +106,17 @@ def add_markerView(request):
   }
   return render(request, 'markers/add_marker.html', context)
 
+# Save marker to db
+def save_markerView(request):
+  marker_location = 'SRID=4326;POINT (4.8 52.7)'
+  # add markerlocation to db
+  m_location = Marker(
+    name     = 'hallo',
+    location = marker_location
+  )
+  m_location.save()
+  return render(request, 'markers/afstanden.html')
+
 # all afstanden map view
 def all_afstandenView(request):
   title = 'Afstanden'

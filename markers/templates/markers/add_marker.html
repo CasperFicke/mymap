@@ -20,6 +20,12 @@
     <div class="col-md-4">
       {% if user.is_authenticated %}
         <div class="container">
+          <hr>
+          <p>
+            latitude: <span id="lat"></span><br />
+            longitude: <span id="lng"></span>
+          </p>
+          <hr>
           <form action="" method=POST>
             {% csrf_token %}
             {{ form.as_p }}
@@ -42,7 +48,7 @@
 
 {% block script_files_bottom %}
   <!-- local JS  -->
-  <script src="{% static 'markers/scripts/show_marker.js' %}" defer></script>
+  <script src="{% static 'markers/scripts/add_marker.js' %}" defer></script>
   <!-- leaflet css and js  -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
