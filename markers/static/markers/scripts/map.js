@@ -8,7 +8,7 @@ var map   = L.map("mapid", { layers: [layer] });
 /* set map */
 map.locate()
   .on("locationfound", (e) => map.setView(e.latlng, 14))
-  .on("locationerror", () => map.setView([52.5, 4.95], 12));
+  .on("locationerror", ()  => map.setView([52.5, 4.95], 12));
   
 /* load markers */
 async function load_markers() {
@@ -16,13 +16,13 @@ async function load_markers() {
     .getBounds()
     .toBBoxString()}`;
   const response = await fetch(markers_url);
-  const geojson = await response.json();
+  const geojson  = await response.json();
   return geojson;
 }
 /* render markers */
 async function render_markers() {
   const markers = await load_markers();
-  L.geoJSON(markers)
+  L.geoJSON(markers, {riseOnHover:true, riseOfset:250, title:'red', alt:'blue', fillOpacity:'1'})
     .bindPopup((layer) => layer.feature.properties.name)
     .addTo(map);
 }
@@ -35,7 +35,7 @@ async function load_areas() {
     .getBounds()
     .toBBoxString()}`;
   const response_a = await fetch(areas_url);
-  const geojson_a = await response_a.json();
+  const geojson_a  = await response_a.json();
   return geojson_a;
 }
 /* render areas */

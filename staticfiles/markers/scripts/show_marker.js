@@ -34,7 +34,7 @@ async function render_marker() {
   // replace Leaflet's default blue marker with a custom icon
   function createCustomIcon (feature, latlng) {
     let myIcon = L.icon({
-      iconUrl      : 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+      iconUrl      : 'static/images/leaf-green.png',
       shadowUrl    : 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
       iconSize     : [38, 95], // width and height of the image in pixels
       shadowSize   : [50, 64], // width, height of optional shadow image
@@ -53,5 +53,6 @@ async function render_marker() {
     .bindPopup((layer) => layer.feature.properties.name)
     .addTo(map)
 }
+
 // add marker to map
 map.on("moveend", render_marker);
