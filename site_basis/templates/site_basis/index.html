@@ -2,16 +2,17 @@
 
 {% extends 'base.html' %}
 {% load static %}
+{% load slippers %}
 
 {% block title %}{{ title|title }}{% endblock title %}
 
 {% block css_files %}
-  
 {% endblock css_files%}
 
 {% block content %}
   {% include 'includes/breadcrumb.html' %}
   <div class="container">
+    
     <div class="row mt-4">
       <div class="card">
         <div class="card-header bg-info text-white">
@@ -19,13 +20,7 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4 mb-4">
-              <a class="text-decoration-none text-dark" href="{% url 'markers:all-markers' %}">
-                <div class="card my-card shadow text-center p-3">
-                  <h4>Lijst <i class="fas fa-list"></i></h4>
-                </div>
-              </a>
-            </div>
+            {% include 'site_basis/partials/select.html' with titel='Kaart' icon='fas fa-globe' %}
             <div class="col-md-4 mb-4">
               <a class="text-decoration-none text-dark" href="{% url 'markers:wfs' %}">
                 <div class="card my-card shadow text-center p-3">
@@ -58,11 +53,8 @@
             </a>
           </div>
           <div class="col-md-4 mb-4">
-            <a class="text-decoration-none text-dark" href="#">
-              <div class="card my-card shadow text-center p-3">
-                <h4> <i class="fas fa-clone"></i></h4>
-              </div>
-            </a>
+            {% #cardje heading="Kaart" %}
+            {% /cardje %}
           </div>
         </div>
       </div>

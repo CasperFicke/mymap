@@ -40,6 +40,7 @@ INSTALLED_APPS = [
   'gisserver',
   'leaflet',
   'djgeojson',
+  'slippers',
   # apps
   'site_basis.apps.SiteBasisConfig',
   'markers.apps.MarkersConfig',

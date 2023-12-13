@@ -1,0 +1,3 @@
+components:
+  cardje: "site_basis/partials/cardje.html"
+  button: "site_basis/partials/button.html"

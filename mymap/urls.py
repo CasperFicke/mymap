@@ -7,13 +7,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
   # admin
-  path('admin/'    , admin.site.urls),
+  path('admin/', admin.site.urls),
   # apps
-  path(''          , include('site_basis.urls', namespace="site-basis")),
-  path("markers/"  , include("markers.urls")),
-  path("stations/" , include("stations.urls")),
+  path(''      , include('site_basis.urls', namespace="site-basis")),
+  path(''      , include("markers.urls")),
+  path(''      , include("stations.urls")),
   # api
-  path("api/"      , include("markers.api")),
+  path('api/'  , include("markers.api")),
 ]
 
 if settings.DEBUG:
